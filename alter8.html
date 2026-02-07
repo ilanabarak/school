@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הערכה חלופית במדעים - תשפ"ו</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;800&family=Heebo:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-page: #edf2f7;
+            --text-dark: #2d3748;
+            --primary: #5a67d8;
+            --secondary: #9f7aea;
+            --topic-bg: #e0e7ff;
+            --topic-border: #c5d0ff;
+            --game-bg: #fef3c7;
+            --game-border: #fde68a;
+            --role-bg: #f0fff4;
+            --role-border: #c6f6d5;
+            --submit-bg: #fff5f5;
+            --submit-border: #fed7d7;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4c51bf 0%, #6b46c1 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 6px solid #434190;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 3.2rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 800;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Base Card Styling */
+        .card {
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 2px solid transparent;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-family: 'Heebo', sans-serif;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #1a202c;
+        }
+
+        /* Color Variations for Sections */
+        .card-intro { background-color: #ffffff; border-color: #e2e8f0; border-right-width: 12px; border-right-color: var(--primary); }
+        .card-topics { background-color: #ebf4ff; border-color: #bee3f8; }
+        .card-games { background-color: #fffaf0; border-color: #feebc8; }
+        .card-roles { background-color: #f0fff4; border-color: #c6f6d5; }
+        .card-submit { background-color: #fff5f5; border-color: #fed7d7; }
+        .card-rubric { background-color: #ffffff; border-color: #e2e8f0; }
+
+        /* Grid elements */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .grid-item {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            text-align: center;
+            font-weight: 700;
+            border: 2px solid rgba(0,0,0,0.05);
+            color: #2d3748;
+            font-size: 1.1rem;
+        }
+
+        /* Role specific styling */
+        .role-box {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .role-box strong {
+            color: #38a169;
+            font-size: 1.2rem;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        /* Table refinement */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 15px;
+            border: 2px solid #edf2f7;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background-color: #f7fafc;
+            padding: 18px;
+            text-align: right;
+            border-bottom: 2px solid #edf2f7;
+            color: #4a5568;
+        }
+
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        /* Button - High visibility */
+        .btn-container {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e53e3e;
+            color: white;
+            padding: 24px 50px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 1.6rem;
+            font-weight: 800;
+            box-shadow: 0 10px 0 #9b2c2c;
+            transition: all 0.1s;
+        }
+
+        .btn:active {
+            transform: translateY(6px);
+            box-shadow: 0 4px 0 #9b2c2c;
+        }
+
+        .bonus-box {
+            background: #faf089;
+            padding: 25px;
+            border-radius: 20px;
+            border: 2px solid #ecc94b;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #2d3748;
+            color: white;
+            font-weight: 600;
+        }
+
+        .footer-school {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #a0aec0;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.2rem; }
+            .card { padding: 25px; }
+            .grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>לומדים מדע דרך משחק</h1>
+        <p>משימת הערכה חלופית במדעים - שכבה ח'</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- מבוא -->
+        <div class="card card-intro">
+            <div class="section-title"><span>🎯</span> המטרה</div>
+            <p style="font-size: 1.3rem; color: #4a5568;">במשימה זו תהפכו את החומר הנלמד במדעים למשחק. דרך המשחק תחזרו על המושגים, תסבירו אותם לאחרים, ותראו שלמידה יכולה להיות גם מהנה, יצירתית וחברתית.</p>
+        </div>
+
+        <!-- שלב 1 -->
+        <div class="card card-topics">
+            <div class="section-title"><span>🧪</span> שלב 1: בחירת נושא</div>
+            <p>בחרו נושא אחד מתוך רשימת הנושאים הבאים:</p>
+            <div class="grid">
+                <div class="grid-item">מבנה האטום</div>
+                <div class="grid-item">הטבלה המחזורית</div>
+                <div class="grid-item">שינוי כימי ופיזיקלי</div>
+                <div class="grid-item">אקולוגיה ומערכות</div>
+            </div>
+        </div>
+
+        <!-- שלב 2 -->
+        <div class="card card-games">
+            <div class="section-title"><span>🎮</span> שלב 2: סוג המשחק</div>
+            <div class="grid">
+                <div class="grid-item">סולמות ונחשים</div>
+                <div class="grid-item">טריוויה / זיכרון</div>
+                <div class="grid-item">אליאס / מי אני?</div>
+                <div class="grid-item">מסלול תחנות</div>
+            </div>
+            <p style="margin-top: 20px; font-weight: 700; color: #c05621;">* ניתן להציע רעיונות נוספים באישור המורה.</p>
+        </div>
+
+        <!-- תפקידים -->
+        <div class="card card-roles">
+            <div class="section-title"><span>👥</span> חלוקת תפקידים (צוות של 6)</div>
+            <p style="margin-bottom: 25px;">כל תלמיד בקבוצה בוחר תפקיד ונושא באחריות עליו:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div class="role-box"><strong>אחראי תוכן מדעי</strong> כתיבת שאלות ומושגים מדויקים.</div>
+                <div class="role-box"><strong>מעצב/ת המשחק</strong> עיצוב הלוח, הקלפים והחלקים.</div>
+                <div class="role-box"><strong>אחראי/ת העלאה</strong> ריכוז הקישורים והעלאה לטופס.</div>
+                <div class="role-box"><strong>בודק/ת משחק</strong> בדיקת תקינות החוקים וזרימת המשחק.</div>
+                <div class="role-box"><strong>אחראי/ת תיעוד</strong> צילום המשחק ועריכת הסרטון/תמונה.</div>
+                <div class="role-box"><strong>אחראי/ת שיתוף פעולה</strong> כתיבת הוראות ואווירה קבוצתית.</div>
+            </div>
+        </div>
+
+        <!-- הגשה -->
+        <div class="card card-submit">
+            <div class="section-title"><span>📦</span> מה מגישים?</div>
+            <ul style="font-size: 1.1rem; padding-right: 25px;">
+                <li style="margin-bottom: 10px;"><strong>תיעוד:</strong> סרטון (עד דקה) או תמונה של המשחק המוכן.</li>
+                <li style="margin-bottom: 10px;"><strong>פרטי המשימה:</strong> שם המשחק והנושא המדעי שבחרתם.</li>
+                <li style="margin-bottom: 10px;"><strong>דף מושגים:</strong> רשימת המושגים וההסברים המדעיים.</li>
+                <li style="margin-bottom: 10px;"><strong>רפלקציה:</strong> 3-4 משפטים אישיים מכל אחד על חלקו במשימה.</li>
+            </ul>
+        </div>
+
+        <!-- מחוון -->
+        <div class="card card-rubric">
+            <div class="section-title"><span>📊</span> מחוון הערכה</div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>תחום</th>
+                            <th>מצוין (100)</th>
+                            <th>טוב (80)</th>
+                            <th>בסיסי (60)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>דיוק מדעי</strong></td>
+                            <td>מדויק וברור מאוד</td>
+                            <td>נכון ברובו</td>
+                            <td>טעויות במושגים</td>
+                        </tr>
+                        <tr>
+                            <td><strong>איכות הביצוע</strong></td>
+                            <td>מושקע וניתן למשחק</td>
+                            <td>טוב וברור</td>
+                            <td>חלקי או לא ברור</td>
+                        </tr>
+                        <tr>
+                            <td><strong>תיעוד</strong></td>
+                            <td>ברור ומקיף</td>
+                            <td>תיעוד חלקי</td>
+                            <td>חסר או מטושטש</td>
+                        </tr>
+                        <tr>
+                            <td><strong>עבודה קבוצתית</strong></td>
+                            <td>שיתוף פעולה מלא</td>
+                            <td>עבודה טובה</td>
+                            <td>עבודה אישית</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div class="bonus-box">
+                    <span style="font-size: 2rem;">🌟</span>
+                    <div><strong>בונוס (עד 5 נק'):</strong> יצירתיות מיוחדת, שאלות אתגר או עיצוב יוצא דופן.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- הגשה -->
+        <div class="btn-container">
+            <a href="https://forms.gle/ctay2Kt6YZDskZN79" target="_blank" class="btn">לחצו כאן להגשת המשימה</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© תשפ"ו 2026 | צוות מדעים | חטיבת הביניים</p>
+        <div class="footer-school">קמפוס עולם שטקליס</div>
+    </footer>
+
+</body>
+</html>
