@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שאלות תרגול: אנרגיה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #f0fdf4;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: fall 3s linear forwards;
+            z-index: 50;
+        }
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="app" class="max-w-2xl w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-green-600 p-6 text-white text-center">
+            <h1 class="text-2xl font-bold">שאלות תרגול באנרגיה</h1>
+            <p class="text-green-100 mt-1">כיתה ז' - מדע וטכנולוגיה</p>
+            <div id="progress-bar-container" class="w-full bg-green-800 h-2 mt-4 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-yellow-400 h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div id="quiz-container" class="p-8">
+            <!-- Questions will be injected here -->
+        </div>
+
+        <!-- Footer/Navigation -->
+        <div class="p-6 border-t border-gray-100 flex justify-between items-center bg-gray-50">
+            <span id="score-display" class="text-gray-600 font-semibold"></span>
+            <button id="next-btn" onclick="nextQuestion()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold transition-colors hidden">
+                לשאלה הבאה
+            </button>
+            <button id="restart-btn" onclick="restartQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-bold transition-colors hidden">
+                תרגול חוזר
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "מהי הגדרת האנרגיה במדע?",
+                options: ["היכולת של גוף לבצע עבודה או לגרום לשינוי", "הכוח שמפעיל כדור הארץ על גופים", "חומר שנמצא בתוך סוללות בלבד", "מצב שבו גוף נמצא תמיד בתנועה"],
+                correct: 0
+            },
+            {
+                question: "איזו אנרגיה קיימת במתיחה של קפיץ או גומי?",
+                options: ["אנרגיית חום", "אנרגיה אלסטית", "אנרגיה כימית", "אנרגיה גרעינית"],
+                correct: 1
+            },
+            {
+                question: "זהו את המרת האנרגיה: קומקום חשמלי מרתיח מים",
+                options: ["חשמלית לחום", "כימית לאור", "תנועה לגובה", "אלסטית לתנועה"],
+                correct: 0
+            },
+            {
+                question: "איזה ממקורות האנרגיה הבאים הוא מתחדש (ירוק)?",
+                options: ["נפט", "גז טבעי", "שמש", "פחם"],
+                correct: 2
+            },
+            {
+                question: "האם לפי חוק שימור האנרגיה, אנרגיה יכולה להיעלם מהעולם?",
+                options: ["כן, היא נעלמת כשיש חיכוך", "לא, היא רק משנה צורה"],
+                correct: 1
+            },
+            // New questions added based on the practice sheet
+            {
+                question: "מאוורר חשמלי פועל בחדר. מהי המרת האנרגיה המרכזית?",
+                options: ["חשמלית לתנועה", "תנועה לחשמלית", "חום לאור", "כימית לתנועה"],
+                correct: 0
+            },
+            {
+                question: "נר דולק ומאיר את החדר. לאיזה סוגי אנרגיה הופכת האנרגיה הכימית שבשעווה?",
+                options: ["תנועה וגובה", "אור וחום", "חשמל ותנועה", "אלסטית ואור"],
+                correct: 1
+            },
+            {
+                question: "ילד מחליק במגלשה מלמעלה למטה. איזו אנרגיה הופכת לאנרגיית תנועה?",
+                options: ["אנרגיה חשמלית", "אנרגיה אלסטית", "אנרגיית גובה", "אנרגיה גרעינית"],
+                correct: 2
+            },
+            {
+                question: "מכונת כביסה בזמן עבודה פולטת רעש ומתחממת. אלו סוגי אנרגיה נחשבים כאן ל'מבוזבזים'?",
+                options: ["אנרגיית התנועה של התוף", "אנרגיית קול וחום", "האנרגיה החשמלית מהשקע", "כל התשובות נכונות"],
+                correct: 1
+            },
+            {
+                question: "בשימוש במחשבון סולארי, מהו סוג האנרגיה ההתחלתי?",
+                options: ["אנרגיית גובה", "אנרגיה כימית", "אנרגיית קרינה (אור)", "אנרגיה אלסטית"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        const quizContainer = document.getElementById('quiz-container');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const scoreDisplay = document.getElementById('score-display');
+
+        function loadQuestion() {
+            answered = false;
+            nextBtn.classList.add('hidden');
+            const q = questions[currentQuestionIndex];
+            
+            const progress = (currentQuestionIndex / questions.length) * 100;
+            progressBar.style.width = `${progress}%`;
+            scoreDisplay.innerText = `שאלה ${currentQuestionIndex + 1} מתוך ${questions.length}`;
+
+            let html = `<div class="fade-in">
+                <h2 class="text-xl font-bold mb-6 text-gray-800">${q.question}</h2>
+                <div class="space-y-3">`;
+
+            q.options.forEach((option, index) => {
+                html += `
+                    <button onclick="checkAnswer(${index})" 
+                            id="opt-${index}"
+                            class="w-full text-right p-4 border-2 border-gray-200 rounded-xl hover:bg-green-50 hover:border-green-300 transition-all duration-200 outline-none">
+                        ${option}
+                    </button>`;
+            });
+
+            html += `</div></div>`;
+            quizContainer.innerHTML = html;
+        }
+
+        function checkAnswer(index) {
+            if (answered) return;
+            answered = true;
+            
+            const q = questions[currentQuestionIndex];
+            const selectedBtn = document.getElementById(`opt-${index}`);
+            const correctBtn = document.getElementById(`opt-${q.correct}`);
+
+            if (index === q.correct) {
+                selectedBtn.classList.remove('border-gray-200');
+                selectedBtn.classList.add('bg-green-100', 'border-green-500', 'text-green-700', 'font-bold');
+                score++;
+                showFeedback(true);
+            } else {
+                selectedBtn.classList.remove('border-gray-200');
+                selectedBtn.classList.add('bg-red-100', 'border-red-500', 'text-red-700');
+                correctBtn.classList.add('bg-green-50', 'border-green-500', 'text-green-700', 'font-bold');
+                showFeedback(false);
+            }
+
+            if (currentQuestionIndex < questions.length - 1) {
+                nextBtn.classList.remove('hidden');
+            } else {
+                setTimeout(showResults, 1500);
+            }
+        }
+
+        function showFeedback(isCorrect) {
+            const feedback = document.createElement('div');
+            feedback.className = `mt-4 text-center font-bold ${isCorrect ? 'text-green-600' : 'text-red-600'} fade-in`;
+            feedback.innerText = isCorrect ? "נכון מאוד!" : "לא מדויק, התשובה הנכונה מסומנת בירוק";
+            quizContainer.appendChild(feedback);
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function showResults() {
+            progressBar.style.width = `100%`;
+            const percentage = (score / questions.length) * 100;
+            let message = "";
+            let color = "";
+            let emoji = "";
+
+            if (percentage === 100) { emoji = "🏆"; message = "אלופים! אתם מבינים באנרגיה בצורה מושלמת!"; color = "text-green-600"; createConfetti(); }
+            else if (percentage >= 70) { emoji = "🌟"; message = "כל הכבוד! אתם בדרך הנכונה!"; color = "text-blue-600"; }
+            else { emoji = "📚"; message = "מומלץ לעבור שוב על דף העבודה."; color = "text-orange-600"; }
+
+            quizContainer.innerHTML = `
+                <div class="text-center fade-in">
+                    <div class="text-6xl mb-4">${emoji}</div>
+                    <h2 class="text-3xl font-bold mb-2 ${color}">סיימתם את התרגול!</h2>
+                    <p class="text-xl mb-6 text-gray-700">עניתם נכון על <span class="font-bold">${score}</span> מתוך ${questions.length} שאלות.</p>
+                    <p class="text-gray-600 mb-8">${message}</p>
+                </div>
+            `;
+            
+            scoreDisplay.innerText = "התרגול הסתיים";
+            restartBtn.classList.remove('hidden');
+            nextBtn.classList.add('hidden');
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            restartBtn.classList.add('hidden');
+            loadQuestion();
+        }
+
+        function createConfetti() {
+            for(let i=0; i<50; i++) {
+                const c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + 'vw';
+                c.style.backgroundColor = ['#fbbf24', '#34d399', '#60a5fa', '#f87171'][Math.floor(Math.random()*4)];
+                c.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                c.style.top = '-10px';
+                document.body.appendChild(c);
+                setTimeout(() => c.remove(), 3000);
+            }
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>
