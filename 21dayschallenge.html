@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>21 ימי היכרות עם התנין שלך</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --navy:#100b32;
+      --navy2:#1d1248;
+      --purple:#6f3cff;
+      --pink:#ff3dac;
+      --pink2:#ff73c8;
+      --cyan:#38e8e0;
+      --white:#ffffff;
+      --soft:#fff7fc;
+      --soft2:#f4edff;
+      --ink:#251c3f;
+      --muted:#756d8d;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 20px 60px rgba(22,8,52,.18);
+      --radius:28px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:"Rubik",sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+
+    h1,h2,h3,p{margin-top:0}
+
+    h1,h2,h3{
+      line-height:1.18;
+      letter-spacing:-.03em;
+    }
+
+    .wrap{
+      width:min(1120px, calc(100% - 36px));
+      margin:auto;
+    }
+
+    .section{
+      padding:88px 0;
+      position:relative;
+    }
+
+    .dark{
+      color:#fff;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(255,61,172,.17), transparent 25%),
+        radial-gradient(circle at 88% 30%, rgba(56,232,224,.12), transparent 28%),
+        linear-gradient(145deg,var(--navy),var(--navy2));
+    }
+
+    .light{
+      background:
+        radial-gradient(circle at 90% 0%, rgba(255,61,172,.08), transparent 30%),
+        linear-gradient(180deg,#fff,var(--soft));
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      margin-bottom:22px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero{
+      padding:90px 0 76px;
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:clamp(42px,6vw,74px);
+      margin-bottom:26px;
+      max-width:850px;
+    }
+
+    .hero h1 .glow{
+      color:var(--pink2);
+      text-shadow:0 0 30px rgba(255,61,172,.36);
+    }
+
+    .hero-copy{
+      font-size:20px;
+      color:#eee9ff;
+      max-width:720px;
+    }
+
+    .hero-copy strong{color:#fff}
+
+    .mini-lines{
+      margin:24px 0;
+      display:grid;
+      gap:8px;
+      color:#fff;
+      font-size:18px;
+    }
+
+    .croc-name{
+      color:var(--cyan);
+      font-size:24px;
+      font-weight:900;
+      margin:24px 0;
+    }
+
+    .price-line{
+      margin:30px 0 22px;
+      font-size:clamp(24px,3.2vw,37px);
+      font-weight:900;
+      color:#fff;
+    }
+
+    .price-line span{
+      color:var(--pink2);
+    }
+
+    .cta{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      min-height:58px;
+      padding:0 28px;
+      border-radius:16px;
+      color:#fff;
+      font-weight:900;
+      font-size:18px;
+      text-decoration:none;
+      background:linear-gradient(90deg,var(--pink),var(--purple));
+      box-shadow:0 14px 34px rgba(255,61,172,.27);
+      transition:.22s ease;
+      border:1px solid rgba(255,255,255,.16);
+    }
+
+    .cta:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 42px rgba(255,61,172,.36);
+    }
+
+    .micro{
+      margin-top:12px;
+      color:#cfc7e9;
+      font-size:14px;
+    }
+
+    .hero-card{
+      position:relative;
+      min-height:540px;
+      border-radius:36px;
+      padding:24px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.025));
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow:0 30px 80px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      background:var(--pink);
+      filter:blur(100px);
+      opacity:.22;
+      right:-80px;
+      top:-40px;
+    }
+
+    .hero-card:after{
+      content:"";
+      position:absolute;
+      width:260px;
+      height:260px;
+      background:var(--cyan);
+      filter:blur(110px);
+      opacity:.16;
+      left:-80px;
+      bottom:-60px;
+    }
+
+    .mockup{
+      z-index:2;
+      width:82%;
+      aspect-ratio:.68;
+      border-radius:24px;
+      border:2px solid rgba(255,255,255,.25);
+      background:
+        linear-gradient(160deg,#271350,#0f0a2e);
+      box-shadow:
+        -25px 30px 60px rgba(0,0,0,.4),
+        0 0 55px rgba(255,61,172,.13);
+      padding:34px 26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transform:rotate(-3deg);
+    }
+
+    .mockup-top{
+      font-size:13px;
+      color:var(--pink2);
+      font-weight:800;
+    }
+
+    .mockup-title{
+      font-size:32px;
+      color:#fff;
+      font-weight:900;
+    }
+
+    .mockup-croc{
+      font-size:88px;
+      text-align:center;
+      filter:drop-shadow(0 10px 20px rgba(0,0,0,.4));
+    }
+
+    .mockup-bottom{
+      font-size:14px;
+      color:var(--cyan);
+      font-weight:700;
+    }
+
+    .hook{
+      text-align:center;
+      max-width:900px;
+      margin:auto;
+    }
+
+    .hook h2{
+      font-size:clamp(34px,5vw,56px);
+      color:#fff;
+      margin-bottom:30px;
+    }
+
+    .quotes{
+      max-width:640px;
+      margin:32px auto;
+      display:grid;
+      gap:12px;
+    }
+
+    .quote{
+      padding:15px 20px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:15px;
+      font-size:19px;
+      font-weight:700;
+    }
+
+    .hook p{
+      max-width:760px;
+      margin:18px auto;
+      font-size:19px;
+      color:#e5ddf8;
+    }
+
+    .hook .big{
+      font-size:30px;
+      color:var(--cyan);
+      font-weight:900;
+      margin:30px auto;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:46px;
+    }
+
+    .section-title h2{
+      font-size:clamp(34px,4.5vw,54px);
+      margin-bottom:16px;
+    }
+
+    .section-title p{
+      font-size:19px;
+      color:var(--muted);
+      max-width:760px;
+      margin:auto;
+    }
+
+    .dark .section-title p{color:#d9d2ee}
+
+    .recognition{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:46px;
+      align-items:center;
+    }
+
+    .recognition-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .recognition-item{
+      padding:20px 22px;
+      border-radius:18px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size:18px;
+    }
+
+    .recognition-item strong{
+      color:var(--pink2);
+    }
+
+    .story{
+      color:#eee8ff;
+      font-size:18px;
+    }
+
+    .story .statement{
+      margin:25px 0;
+      font-size:28px;
+      font-weight:900;
+      color:var(--cyan);
+    }
+
+    .four{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-top:34px;
+    }
+
+    .benefit{
+      padding:28px 20px;
+      border-radius:22px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      border:1px solid #f0e5f6;
+      text-align:center;
+    }
+
+    .benefit .icon{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      margin:0 auto 17px;
+      display:grid;
+      place-items:center;
+      font-size:25px;
+      background:linear-gradient(145deg,#ffe3f4,#eee5ff);
+    }
+
+    .benefit h3{
+      font-size:21px;
+      margin-bottom:9px;
+    }
+
+    .simple{
+      text-align:center;
+      margin-top:40px;
+      font-size:20px;
+      font-weight:700;
+    }
+
+    .simple strong{color:var(--pink)}
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:16px;
+      align-items:center;
+      margin-top:40px;
+    }
+
+    .page-card{
+      aspect-ratio:.68;
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 16px 42px rgba(32,15,64,.14);
+      border:1px solid rgba(93,55,131,.12);
+      display:flex;
+      align-items:flex-end;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .page-card:nth-child(odd){
+      color:#fff;
+      background:linear-gradient(155deg,#221044,#0e0a29);
+    }
+
+    .page-card:nth-child(even){
+      color:#442a5d;
+      background:linear-gradient(155deg,#fff,#fff0fa);
+    }
+
+    .page-card:nth-child(1){transform:rotate(3deg)}
+    .page-card:nth-child(2){transform:rotate(-2deg)}
+    .page-card:nth-child(3){transform:translateY(-12px)}
+    .page-card:nth-child(4){transform:rotate(2deg)}
+    .page-card:nth-child(5){transform:rotate(-3deg)}
+
+    .who{
+      max-width:810px;
+      margin:auto;
+    }
+
+    .who-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:14px 0;
+      font-size:19px;
+      border-bottom:1px solid #eee3f1;
+    }
+
+    .check{
+      flex:0 0 30px;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:#ffe1f3;
+      color:#e52590;
+      font-weight:900;
+    }
+
+    .not-needed{
+      margin-top:35px;
+      padding:26px;
+      border-radius:22px;
+      background:#f6efff;
+      text-align:center;
+      font-size:18px;
+    }
+
+    .why21{
+      text-align:center;
+      max-width:840px;
+      margin:auto;
+    }
+
+    .why21 h2{
+      font-size:clamp(34px,4vw,50px);
+      margin-bottom:24px;
+    }
+
+    .why21 p{
+      font-size:22px;
+      color:#ece6ff;
+      margin:10px 0;
+    }
+
+    .offer{
+      max-width:800px;
+      margin:auto;
+      padding:48px;
+      border-radius:34px;
+      background:#fff;
+      box-shadow:0 30px 80px rgba(26,11,55,.24);
+      text-align:center;
+      color:var(--ink);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .offer:before{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      background:#ff3dac;
+      filter:blur(100px);
+      opacity:.11;
+      top:-80px;
+      right:-80px;
+    }
+
+    .offer h2{
+      font-size:clamp(36px,5vw,54px);
+    }
+
+    .offer-price{
+      font-size:52px;
+      font-weight:900;
+      color:var(--pink);
+      line-height:1;
+      margin:20px 0 10px;
+    }
+
+    .offer-daily{
+      font-size:23px;
+      font-weight:800;
+      margin-bottom:25px;
+    }
+
+    .offer p{
+      font-size:18px;
+      max-width:640px;
+      margin:16px auto;
+    }
+
+    .gift{
+      margin:32px 0;
+      padding:26px;
+      border-radius:22px;
+      background:linear-gradient(145deg,#fff1f8,#f2ecff);
+      border:1px solid #eadcf4;
+    }
+
+    .gift h3{
+      font-size:27px;
+      color:#7b2c91;
+      margin-bottom:12px;
+    }
+
+    .faq{
+      max-width:860px;
+      margin:auto;
+    }
+
+    details{
+      background:#fff;
+      border-radius:18px;
+      border:1px solid #eee3f2;
+      margin-bottom:13px;
+      box-shadow:0 9px 30px rgba(30,15,52,.06);
+      overflow:hidden;
+    }
+
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:20px 22px;
+      font-weight:800;
+      font-size:18px;
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    summary::-webkit-details-marker{display:none}
+
+    summary:after{
+      content:"+";
+      color:var(--pink);
+      font-size:24px;
+    }
+
+    details[open] summary:after{content:"−"}
+
+    details p{
+      padding:0 22px 22px;
+      margin:0;
+      color:#665d76;
+    }
+
+    .closing{
+      text-align:center;
+      max-width:850px;
+      margin:auto;
+    }
+
+    .closing h2{
+      font-size:clamp(38px,5vw,60px);
+      margin-bottom:28px;
+    }
+
+    .closing p{
+      color:#e4ddf8;
+      font-size:19px;
+    }
+
+    .whispers{
+      margin:28px auto;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .whispers span{
+      padding:11px 18px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.13);
+      background:rgba(255,255,255,.07);
+      color:#fff;
+      font-weight:700;
+    }
+
+    .final-line{
+      font-size:30px !important;
+      font-weight:900;
+      color:var(--cyan) !important;
+      margin:34px 0 !important;
+    }
+
+    .sticky-mobile{
+      display:none;
+    }
+
+    @media(max-width:900px){
+      .section{padding:68px 0}
+
+      .hero{
+        padding:60px 0 75px;
+        min-height:auto;
+      }
+
+      .hero-grid,
+      .recognition{
+        grid-template-columns:1fr;
+      }
+
+      .hero-grid{gap:38px}
+
+      .hero-card{
+        min-height:430px;
+      }
+
+      .mockup{
+        width:68%;
+      }
+
+      .four{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .gallery{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .page-card:nth-child(4),
+      .page-card:nth-child(5){
+        display:none;
+      }
+    }
+
+    @media(max-width:600px){
+      body{
+        padding-bottom:74px;
+      }
+
+      .wrap{
+        width:min(100% - 26px,1120px);
+      }
+
+      .section{
+        padding:54px 0;
+      }
+
+      .hero h1{
+        font-size:42px;
+      }
+
+      .hero-copy,
+      .story,
+      .recognition-item,
+      .who-item{
+        font-size:17px;
+      }
+
+      .hero-card{
+        min-height:390px;
+      }
+
+      .mockup{
+        width:82%;
+        padding:26px 20px;
+      }
+
+      .mockup-title{font-size:26px}
+
+      .four{
+        grid-template-columns:1fr;
+      }
+
+      .gallery{
+        gap:10px;
+      }
+
+      .page-card{
+        border-radius:11px;
+        padding:10px;
+        font-size:10px;
+      }
+
+      .offer{
+        padding:35px 22px;
+      }
+
+      .offer-price{
+        font-size:46px;
+      }
+
+      .cta{
+        width:100%;
+        font-size:17px;
+        padding:0 17px;
+      }
+
+      .sticky-mobile{
+        display:block;
+        position:fixed;
+        z-index:100;
+        bottom:0;
+        right:0;
+        left:0;
+        padding:10px 13px;
+        background:rgba(16,11,50,.96);
+        backdrop-filter:blur(15px);
+        border-top:1px solid rgba(255,255,255,.12);
+      }
+
+      .sticky-mobile .cta{
+        min-height:52px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+  החליפי את כל PURCHASE_URL בקישור הרכישה שלך
+  -->
+
+  <!-- HERO -->
+  <section class="section dark hero">
+    <div class="wrap hero-grid">
+
+      <div>
+        <div class="eyebrow">🐊 21 ימי היכרות עם התנין שלך</div>
+
+        <h1>
+          יש קול אחד שמנהל לך
+          <span class="glow">יותר החלטות ממה שנדמה לך.</span>
+        </h1>
+
+        <div class="mini-lines">
+          <div>הוא מלחיץ אותך עוד לפני שבכלל התחלת לפעול.</div>
+          <div>שותל בך רגשות אשמה.</div>
+          <div>גורם לך לפקפק בעצמך.</div>
+          <div>ולפעמים משכנע אותך לוותר עוד לפני שניסית.</div>
+        </div>
+
+        <div class="croc-name">אני קוראת לו התנין.</div>
+
+        <p class="hero-copy">
+          ב־21 הימים הקרובים תביני מי זה היצור המסתורי הזה,
+          מאיפה הוא מגיע, תלמדי לזהות מתי הוא מתעורר,
+          מה הוא לוחש לך, מה מפעיל אותו,
+          ואיך להפסיק להתייחס לכל מה שהוא אומר כאילו זו האמת.
+        </p>
+
+        <div class="price-line">
+          21 ימים. 22 ₪.
+          <span>כשקל אחד ליום כדי לצאת מהלופ האינסופי שאת חיה בו.</span>
+        </div>
+
+        <a class="cta" href="PURCHASE_URL">אני רוצה להכיר את התנין שלי</a>
+
+        <div class="micro">
+          כמה דקות ביום. תרגיל אחד בכל פעם. בלי קורס ארוך ובלי להעמיס על החיים.
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <!-- החליפי את הבלוק הזה בתמונת מוקאפ של החוברת אם תרצי -->
+        <div class="mockup">
+          <div class="mockup-top">21 ימים להכיר. להבין. להשתחרר. לעצמי.</div>
+          <div class="mockup-title">21 ימי היכרות<br>עם התנין שלך</div>
+          <div class="mockup-croc">🐊</div>
+          <div class="mockup-bottom">כמה דקות ביום • תרגיל אחד בכל פעם</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECOND HOOK -->
+  <section class="section dark">
+    <div class="wrap hook">
+
+      <h2>ומה אם חלק מהמחשבות שאת הכי מאמינה להן… בכלל לא שייכות לך?</h2>
+
+      <div class="quotes">
+        <div class="quote">“אל תעשי את זה.”</div>
+        <div class="quote">“את לא מספיק טובה.”</div>
+        <div class="quote">“משהו עומד להשתבש.”</div>
+        <div class="quote">“כולם רואים שנכשלת.”</div>
+      </div>
+
+      <p>אנחנו נוטות לקרוא לו “אני”.</p>
+
+      <div class="big">אבל אולי הגיע הזמן להכיר את התנין שמאחוריו.</div>
+
+      <p>
+        21 ימים של תרגול קצר שיעזרו לך לזהות את הקול שמפחיד,
+        מקטין ומפעיל אותך, ולהתחיל לבחור אם להאמין לו.
+      </p>
+
+      <div class="price-line">22 ₪ לכל האתגר. <span>כשקל ליום.</span></div>
+
+      <a class="cta" href="PURCHASE_URL">אני רוצה לגלות מי התנין שלי</a>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 2 -->
+  <section class="section dark">
+    <div class="wrap">
+
+      <div class="section-title">
+        <h2>אולי גם אצלך התנין כבר מדבר</h2>
+        <p>אולי את מכירה את הרגעים האלה…</p>
+      </div>
+
+      <div class="recognition">
+
+        <div class="recognition-list">
+          <div class="recognition-item">“עזבי, זה לא בשבילך.”</div>
+          <div class="recognition-item">“את הולכת לעשות טעות.”</div>
+          <div class="recognition-item">“מה יחשבו עלייך?”</div>
+          <div class="recognition-item">“את לא מספיק טובה לזה.”</div>
+        </div>
+
+        <div class="story">
+          <p>
+            לפעמים הוא מופיע לפני שיחה חשובה.<br>
+            לפעמים אחרי הודעה שקיבלת.<br>
+            לפעמים מול מראה.<br>
+            לפעמים כשמישהי אחרת מצליחה.<br>
+            ולפעמים דווקא כששום דבר באמת לא קרה.
+          </p>
+
+          <p>
+            אבל הגוף כבר מגיב.<br>
+            הראש מתחיל לרוץ.<br>
+            הסיפור גדל.<br>
+            ואת מוצאת את עצמך בתוך לופ של מחשבות, פחד,
+            אשמה, השוואה או ביקורת עצמית.
+          </p>
+
+          <div class="statement">והבעיה היא שלא תמיד ברור לך שזה “התנין”.</div>
+
+          <p>לפעמים זה מרגיש פשוט כמו:</p>
+
+          <div class="statement">“ככה אני.”</div>
+
+          <p>
+            אבל כשאת מתחילה לזהות את הקול הזה, משהו משתנה.
+          </p>
+
+          <p>
+            את יכולה לעצור רגע.<br>
+            להבין מה הפעיל אותך.<br>
+            לשים לב למה שהוא מנסה לגרום לך להאמין.<br>
+            ולהתחיל להפריד בין <strong>מה שאת מרגישה עכשיו</strong>
+            לבין <strong>מי שאת באמת</strong>.
+          </p>
+        </div>
+
+      </div>
+
+      <div style="max-width:800px;margin:70px auto 0;text-align:center">
+        <h2 style="font-size:38px">אז מה קורה ב־21 הימים האלה?</h2>
+
+        <p style="font-size:19px;color:#e7e0f8">
+          לא לומדים “איך לא לפחד יותר”.<br>
+          לא מנסים להשתיק את התנין.<br>
+          ולא מנסים להפוך אותך לגרסה מושלמת ורגועה של עצמך.
+        </p>
+
+        <p style="font-size:19px;color:#e7e0f8">
+          בכל יום תעצרי לכמה דקות ותפגשי עוד חלק ממנו:
+          מה מפעיל אותו, מה הוא לוחש, איך הוא משפיע על הבחירות שלך,
+          איך הוא מגדיל דברים קטנים ואיך הוא גורם לך להאמין
+          שהמחשבות שלו הן האמת.
+        </p>
+
+        <p style="font-size:28px;font-weight:900;color:#38e8e0">
+          יותר מודעות. יותר מרחק. יותר בחירה.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 3 -->
+  <section class="section light">
+    <div class="wrap">
+
+      <div class="section-title">
+        <h2>מה מחכה לך ב־21 הימים?</h2>
+        <p>
+          <strong>21 ימים. כמה דקות ביום. היכרות אחת שתשנה את הדרך שבה את שומעת את עצמך.</strong>
+        </p>
+      </div>
+
+      <p style="max-width:780px;margin:0 auto 32px;text-align:center;font-size:19px">
+        בכל יום מחכה לך עמוד קצר וממוקד שמאיר עוד חלק בתנין שלך,
+        ואחריו תרגיל שעוזר לך לחבר את מה שקראת <strong>לחיים שלך</strong>.
+      </p>
+
+      <div class="four">
+        <div class="benefit">
+          <div class="icon">👁️</div>
+          <h3>לזהות</h3>
+          <p>מה מפעיל את התנין שלך</p>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">💭</div>
+          <h3>להבין</h3>
+          <p>מה הוא לוחש לך ולמה</p>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">✋</div>
+          <h3>לעצור</h3>
+          <p>רגע לפני שאת מגיבה על אוטומט</p>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">✨</div>
+          <h3>ולבחור</h3>
+          <p>איך את רוצה להגיב אחרת</p>
+        </div>
+      </div>
+
+      <div class="simple">
+        כמה דקות ביום. עמוד אחד. תרגיל אחד. צעד אחד קטן.
+        <br><br>
+        <strong>
+          21 ימים שבהם את לא מנסה לתקן את עצמך.<br>
+          את מתחילה להכיר את עצמך.
+        </strong>
+        <br><br>
+
+        <a class="cta" href="PURCHASE_URL">
+          אני רוצה להתחיל את 21 הימים שלי ב־22 ₪
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 4 -->
+  <section class="section light">
+    <div class="wrap">
+
+      <div class="section-title">
+        <h2>ככה נראית היכרות עם התנין שלך</h2>
+        <p>
+          בכל יום תפגשי רעיון אחד שיעזור לך להבין את עצמך קצת יותר,
+          ומיד אחריו תרגול קצר שיהפוך את ההבנה למשהו אישי שלך.
+        </p>
+      </div>
+
+      <!--
+      מומלץ להחליף את חמשת הבלוקים הבאים
+      בתמונות אמיתיות מתוך החוברת
+      -->
+      <div class="gallery">
+        <div class="page-card">עמוד תוכן</div>
+        <div class="page-card">עמוד תרגול</div>
+        <div class="page-card">החוברת שלך</div>
+        <div class="page-card">עמוד תרגול</div>
+        <div class="page-card">עמוד תוכן</div>
+      </div>
+
+      <div class="simple">
+        <strong>
+          בלי הרצאות ארוכות. בלי שיעורי בית מעיקים.<br>
+          רק כמה דקות ביום, איתך ועם התנין שלך.
+        </strong>
+
+        <p style="margin:28px auto;max-width:700px">
+          זה לא עוד משהו שתשמרי ותבטיחי לעצמך “לעבור עליו מתישהו”.
+          <br>
+          <strong>זה מסע קטן שאפשר באמת לעשות.</strong>
+        </p>
+
+        <a class="cta" href="PURCHASE_URL">אני מתחילה את האתגר ב־22 ₪</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 5 -->
+  <section class="section light">
+    <div class="wrap who">
+
+      <div class="section-title">
+        <h2>האתגר הזה בשבילך אם…</h2>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>את מתחילה לפקפק בעצמך דווקא כשחשוב לך להתקדם.</div>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>את לוקחת משהו קטן והופכת אותו בראש לסיפור שלם.</div>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>את משווה את עצמך לאחרות ומיד מרגישה שאת פחות.</div>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>את יודעת שהפחד מדבר, אבל עדיין מתקשה לא להאמין לו.</div>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>
+          את מגיבה לפעמים מתוך לחץ, אשמה או ביקורת עצמית ואז חושבת:
+          <strong>“למה שוב עשיתי את זה?”</strong>
+        </div>
+      </div>
+
+      <div class="who-item">
+        <div class="check">✓</div>
+        <div>
+          או שפשוט הגיע הזמן להבין קצת יותר טוב
+          <strong>מה באמת קורה לך שם בפנים.</strong>
+        </div>
+      </div>
+
+      <div class="not-needed">
+        <strong>את לא צריכה להיות “טובה בהתפתחות אישית”.</strong><br><br>
+        את לא צריכה ניסיון קודם.<br>
+        את לא צריכה שעה פנויה ביום.<br><br>
+        <strong>את רק צריכה להיות מוכנה לפגוש את התנין שלך לכמה דקות ביום.</strong>
+      </div>
+
+      <div style="text-align:center;margin-top:32px">
+        <a class="cta" href="PURCHASE_URL">כן, הגיע הזמן שנכיר — 22 ₪</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 6 -->
+  <section class="section dark">
+    <div class="wrap why21">
+
+      <h2>למה דווקא 21 ימים?</h2>
+
+      <p>
+        <strong>
+          כי המטרה היא לא רק להבין את התנין,
+          אלא להתחיל לזהות אותו בחיים עצמם.
+        </strong>
+      </p>
+
+      <p>
+        כמה דקות ביום, עד שהקול שפעם הפעיל אותך
+        הופך לקול שאת כבר יודעת לזהות.
+      </p>
+
+    </div>
+  </section>
+
+
+  <!-- SECTION 7 OFFER -->
+  <section class="section dark" id="buy">
+    <div class="wrap">
+
+      <div class="offer">
+
+        <h2>כל זה בפחות ממחיר של קפה ☕️</h2>
+
+        <div class="offer-price">22 ₪</div>
+        <div class="offer-daily">21 ימים. כשקל אחד ליום.</div>
+
+        <p>
+          במחיר הזה את מקבלת את
+          <strong>“21 ימי היכרות עם התנין שלך”</strong>,
+          חוברת דיגיטלית מעוצבת עם תוכן ותרגול יומי
+          שתלווה אותך צעד אחר צעד לאורך האתגר.
+        </p>
+
+        <p><strong>בלי מנוי. בלי התחייבות. 22 ₪ וזה שלך.</strong></p>
+
+        <div class="gift">
+          <h3>ואם תגיעי עד הסוף, ביום ה־22 מחכה לך עוד משהו 🎁</h3>
+
+          <p>
+            סיימת את האתגר ורוצה להמשיך להעמיק?
+          </p>
+
+          <p>
+            <strong>
+              22 השקלים ששילמת על האתגר יחזרו אלייך במלואם כזיכוי
+            </strong>
+            לרכישת באנדל <strong>“לחישות התנין”</strong>,
+            הכולל את הספר והקורס הדיגיטלי.
+          </p>
+
+          <p>
+            אם תבחרי להמשיך איתי לשלב הבא:
+          </p>
+
+          <h3>ההשקעה שלך באתגר חוזרת אלייך.</h3>
+        </div>
+
+        <a class="cta" href="PURCHASE_URL">
+          אני מתחילה את 21 הימים שלי ב־22 ₪
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="section light">
+    <div class="wrap faq">
+
+      <div class="section-title">
+        <h2>שאלות נפוצות</h2>
+      </div>
+
+      <details>
+        <summary>איך מקבלים את האתגר?</summary>
+        <p>
+          מיד לאחר הרכישה תקבלי גישה לחוברת הדיגיטלית
+          <strong>“21 ימי היכרות עם התנין שלך”</strong>
+          ותוכלי להתחיל את המסע שלך.
+        </p>
+      </details>
+
+      <details>
+        <summary>כמה זמן צריך להקדיש לזה בכל יום?</summary>
+        <p>
+          כמה דקות. הרעיון הוא לא להוסיף לך עוד משימה ענקית,
+          אלא ליצור רגע קטן ביום שבו את עוצרת, קוראת ומתרגלת.
+        </p>
+      </details>
+
+      <details>
+        <summary>חייבים לעשות יום אחד בכל יום?</summary>
+        <p>
+          מומלץ להתקדם יום אחרי יום כדי לתת לתהליך מקום בחיים עצמם.
+          אבל אם פספסת יום, התנין לא נותן קנסות 😉
+          פשוט ממשיכים מהמקום שבו עצרת.
+        </p>
+      </details>
+
+      <details>
+        <summary>צריך ידע קודם?</summary>
+        <p>
+          ממש לא. האתגר נבנה כך שתוכלי להתחיל בדיוק מהמקום שבו את נמצאת היום.
+        </p>
+      </details>
+
+      <details>
+        <summary>ומה קורה ביום ה־22?</summary>
+        <p>
+          אם סיימת ורוצה להמשיך להעמיק,
+          תחכה לך <strong>הטבה מיוחדת:</strong>
+          22 השקלים ששילמת על האתגר יהפכו לזיכוי
+          לרכישת באנדל <strong>“לחישות התנין”</strong>.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+
+  <!-- FINAL -->
+  <section class="section dark">
+    <div class="wrap closing">
+
+      <h2>התנין שלך כנראה לא ייעלם ב־21 ימים.</h2>
+
+      <p>וזאת גם לא המטרה.</p>
+
+      <p>המטרה היא שבפעם הבאה שהוא ילחש לך:</p>
+
+      <div class="whispers">
+        <span>“את לא יכולה.”</span>
+        <span>“את לא מספיק טובה.”</span>
+        <span>“אל תעשי את זה.”</span>
+      </div>
+
+      <p>אולי, במקום להאמין לו מיד, תעצרי לרגע ותחשבי:</p>
+
+      <p class="final-line">“אה. הנה התנין שלי שוב.”</p>
+
+      <p>
+        והרגע הקטן הזה?
+        <br>
+        <strong>הוא בדיוק המקום שבו מתחילה הבחירה.</strong>
+      </p>
+
+      <div class="price-line">
+        21 ימים. 22 ₪.
+        <span>כשקל ביום.</span>
+      </div>
+
+      <a class="cta" href="PURCHASE_URL">
+        אני רוצה להכיר את התנין שלי
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="sticky-mobile">
+    <a class="cta" href="PURCHASE_URL">
+      אני רוצה להתחיל ב־22 ₪
+    </a>
+  </div>
+
+</body>
+</html>
