@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>טבלת מורים וכיתות אינטראקטיבית</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+
+    /* סרגל סינון לפי מורות/מורים */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+      padding: 12px;
+      background: #f1f3f5;
+      border-radius: 8px;
+    }
+
+    .filter-title {
+      width: 100%;
+      text-align: center;
+      font-size: 0.9em;
+      font-weight: bold;
+      color: #6c757d;
+      margin-bottom: 4px;
+    }
+
+    .filter-btn {
+      border: 1px solid transparent;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9em;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+
+    /* טבלה */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: right;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    th {
+      background-color: #343a40;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8f9fa;
+    }
+
+    tr.grade-row {
+      border-top: 2px solid #dee2e6;
+    }
+
+    .grade-badge {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: #2b2b2b;
+      background: #e9ecef;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* תגיות שמות המורים לפי צבעים */
+    .teacher-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      margin: 2px;
+      border-radius: 15px;
+      font-size: 0.9em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .teacher-tag:hover {
+      transform: scale(1.08);
+    }
+
+    /* צבעים ייחודיים לכל מורה */
+    .teacher-ariela { background-color: #f3e5f5; color: #6a1b9a; border: 1px solid #ce93d8; }
+    .teacher-eyal   { background-color: #e3f2fd; color: #1565c0; border: 1px solid #90caf9; }
+    .teacher-simcha { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+    .teacher-amit   { background-color: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+    .teacher-ilana  { background-color: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
+    .teacher-vered  { background-color: #e0f7fa; color: #00838f; border: 1px solid #80deea; }
+
+    /* מצב הדגשה בלחיצה / ריחופ */
+    .teacher-tag.highlighted {
+      box-shadow: 0 0 0 3px currentColor;
+      transform: scale(1.1);
+      font-weight: bold;
+    }
+
+    .row-hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>חלוקת מורים לפי שכבות וכיתות</h2>
+
+  <!-- סרגל סינון מהיר -->
+  <div class="filter-bar">
+    <div class="filter-title">לחץ על מורה כדי לסנן / להדגיש בכיתות:</div>
+    <button class="filter-btn" style="background: #ffffff; border: 1px solid #ccc;" onclick="filterTeacher('all')">הצג הכל</button>
+    <button class="filter-btn teacher-ariela" onclick="filterTeacher('ariela')">אריאלה</button>
+    <button class="filter-btn teacher-eyal" onclick="filterTeacher('eyal')">אייל</button>
+    <button class="filter-btn teacher-simcha" onclick="filterTeacher('simcha')">שמחה</button>
+    <button class="filter-btn teacher-amit" onclick="filterTeacher('amit')">עמית</button>
+    <button class="filter-btn teacher-ilana" onclick="filterTeacher('ilana')">אילנה</button>
+    <button class="filter-btn teacher-vered" onclick="filterTeacher('vered')">ורד</button>
+  </div>
+
+  <!-- טבלה -->
+  <table>
+    <thead>
+      <tr>
+        <th>שכבה</th>
+        <th>כיתה</th>
+        <th>מורים מלמדים</th>
+        <th>מספר תלמידים בכיתה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- שכבה ז -->
+      <tr class="grade-row" data-teachers="ariela">
+        <td><span class="grade-badge">ז</span></td>
+        <td>1</td>
+        <td><span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="eyal simcha amit">
+        <td>ז</td>
+        <td>2</td>
+        <td>
+          <span class="teacher-tag teacher-eyal" data-name="eyal">אייל</span>
+          <span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span>
+          <span class="teacher-tag teacher-amit" data-name="amit">עמית</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr data-teachers="">
+        <td>ז</td>
+        <td>3</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ariela simcha amit">
+        <td>ז</td>
+        <td>4</td>
+        <td>
+          <span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span>
+          <span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span>
+          <span class="teacher-tag teacher-amit" data-name="amit">עמית</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr data-teachers="">
+        <td>ז</td>
+        <td>5</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ariela simcha amit">
+        <td>ז</td>
+        <td>6</td>
+        <td>
+          <span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span>
+          <span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span>
+          <span class="teacher-tag teacher-amit" data-name="amit">עמית</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr data-teachers="">
+        <td>ז</td>
+        <td>7</td>
+        <td></td>
+        <td></td>
+      </tr>
+
+      <!-- שכבה ח -->
+      <tr class="grade-row" data-teachers="ilana">
+        <td><span class="grade-badge">ח</span></td>
+        <td>1</td>
+        <td><span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ilana">
+        <td>ח</td>
+        <td>2</td>
+        <td><span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="simcha">
+        <td>ח</td>
+        <td>3</td>
+        <td><span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ilana simcha amit">
+        <td>ח</td>
+        <td>4</td>
+        <td>
+          <span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span>
+          <span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span>
+          <span class="teacher-tag teacher-amit" data-name="amit">עמית</span>
+        </td>
+        <td></td>
+      </tr>
+      <tr data-teachers="">
+        <td>ח</td>
+        <td>5</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="vered">
+        <td>ח</td>
+        <td>6</td>
+        <td><span class="teacher-tag teacher-vered" data-name="vered">ורד</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="vered">
+        <td>ח</td>
+        <td>7</td>
+        <td><span class="teacher-tag teacher-vered" data-name="vered">ורד</span></td>
+        <td></td>
+      </tr>
+
+      <!-- שכבה ט -->
+      <tr class="grade-row" data-teachers="ariela">
+        <td><span class="grade-badge">ט</span></td>
+        <td>1</td>
+        <td><span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="vered">
+        <td>ט</td>
+        <td>2</td>
+        <td><span class="teacher-tag teacher-vered" data-name="vered">ורד</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ilana">
+        <td>ט</td>
+        <td>3</td>
+        <td><span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ilana">
+        <td>ט</td>
+        <td>4</td>
+        <td><span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="vered">
+        <td>ט</td>
+        <td>5</td>
+        <td><span class="teacher-tag teacher-vered" data-name="vered">ורד</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ariela">
+        <td>ט</td>
+        <td>6</td>
+        <td><span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ariela">
+        <td>ט</td>
+        <td>7</td>
+        <td><span class="teacher-tag teacher-ariela" data-name="ariela">אריאלה</span></td>
+        <td></td>
+      </tr>
+      <tr data-teachers="ilana">
+        <td>ט</td>
+        <td>8</td>
+        <td><span class="teacher-tag teacher-ilana" data-name="ilana">אילנה</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // סינון שורות הטבלה לפי מורה
+  function filterTeacher(teacherKey) {
+    const rows = document.querySelectorAll('tbody tr');
+    const tags = document.querySelectorAll('.teacher-tag');
+
+    tags.forEach(tag => {
+      if (teacherKey !== 'all' && tag.getAttribute('data-name') === teacherKey) {
+        tag.classList.add('highlighted');
+      } else {
+        tag.classList.remove('highlighted');
+      }
+    });
+
+    rows.forEach(row => {
+      const teachers = row.getAttribute('data-teachers') || '';
+      if (teacherKey === 'all' || teachers.includes(teacherKey)) {
+        row.classList.remove('row-hidden');
+      } else {
+        row.classList.add('row-hidden');
+      }
+    });
+  }
+
+  // ריחופ מעל מורה מדגיש את כל התגיות שלו/ה
+  document.querySelectorAll('.teacher-tag').forEach(tag => {
+    tag.addEventListener('mouseenter', () => {
+      const key = tag.getAttribute('data-name');
+      document.querySelectorAll(`.teacher-tag[data-name="${key}"]`).forEach(t => t.classList.add('highlighted'));
+    });
+    tag.addEventListener('mouseleave', () => {
+      document.querySelectorAll('.teacher-tag').forEach(t => t.classList.remove('highlighted'));
+    });
+  });
+</script>
+
+</body>
+</html>
