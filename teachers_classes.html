@@ -115,6 +115,7 @@
     .teacher-amit   { background-color: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
     .teacher-ilana  { background-color: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
     .teacher-vered  { background-color: #e0f7fa; color: #00838f; border: 1px solid #80deea; }
+    .teacher-shira  { background-color: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
 
     /* הדגשה בזמן ריחופ/סינון */
     .teacher-tag.highlighted {
@@ -148,6 +149,7 @@
     <button class="filter-btn teacher-amit" onclick="filterTeacher('amit')">עמית</button>
     <button class="filter-btn teacher-ilana" onclick="filterTeacher('ilana')">אילנה</button>
     <button class="filter-btn teacher-vered" onclick="filterTeacher('vered')">ורד</button>
+    <button class="filter-btn teacher-shira" onclick="filterTeacher('shira')">שירה</button>
   </div>
 
   <!-- הטבלה -->
@@ -168,17 +170,15 @@
         <td></td>
       </tr>
 
-      <tr data-teachers="eyal simcha amit">
+      <tr data-teachers="amit">
         <td class="class-name">ז2</td>
-        <td rowspan="2">
-          <span class="teacher-tag teacher-eyal" data-name="eyal">אייל</span>
-          <span class="teacher-tag teacher-simcha" data-name="simcha">שמחה</span>
-          <span class="teacher-tag teacher-amit" data-name="amit">עמית</span>
-        </td>
+        <td><span class="teacher-tag teacher-amit" data-name="amit">עמית</span></td>
         <td></td>
       </tr>
-      <tr data-teachers="eyal simcha amit">
+
+      <tr data-teachers="shira">
         <td class="class-name">ז3</td>
+        <td><span class="teacher-tag teacher-shira" data-name="shira">שירה</span></td>
         <td></td>
       </tr>
 
